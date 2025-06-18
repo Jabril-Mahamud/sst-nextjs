@@ -17,8 +17,11 @@ export default $config({
     const bucket = new sst.aws.Bucket("MyBucket", {
       access: "public",
     });
+    const auth = new sst.aws.Auth("MyAuth", {
+      issuer: "auth/index.handler",
+    });
     new sst.aws.Nextjs("MyWeb", {
-      link: [bucket],
+      link: [bucket,auth],
     });
   },
 });
